@@ -7,6 +7,7 @@
 			<!-- main content -->
 			<div id="post-body-content">
 				MAIN OPTIONS AWW YISS
+				<?php echo do_shortcode( '[brightcove id="3961559501001"]' ); ?>
 			</div> <!-- post-body-content -->
 			<!-- sidebar -->
 			<div id="postbox-container-1" class="postbox-container">

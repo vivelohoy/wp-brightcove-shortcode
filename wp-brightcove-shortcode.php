@@ -89,18 +89,28 @@ SS      HH   HH OO   OO RR   RR   TTT   CC    C OO   OO DD  DD  EE
 
 function brightcove_video_shortcode( $atts ) {
     if( array_key_exists( 'id', $atts ) && $atts['id'] ) {
+        $options = get_option( 'wp-brightcove-shortcode' );
+
         $atts = shortcode_atts(
-                $brightcove_embed_defaults,
+                array(
+                    'id'            => false,
+                    'width'         => $options['video_width'],
+                    'height'        => $options['video_height'],
+                    'player_id'     => $options['player_id'],
+                    'player_key'    => $options['player_key']
+                ),
                 $atts
             );
 
         $context = Timber::get_context();
-        $options = array(   'VIDEO_WIDTH'       => $atts['width'],
-                            'VIDEO_HEIGHT'      => $atts['height'],
-                            'VIDEO_ID'          => $atts['id'],
-                            'PLAYER_ID'         => $atts['player_id'],
-                            'PLAYER_KEY'        => $atts['player_key'] );
-        $context = array_merge( $context, $options );
+        $timber_options = array(
+            'VIDEO_WIDTH'       => $atts['width'],
+            'VIDEO_HEIGHT'      => $atts['height'],
+            'VIDEO_ID'          => $atts['id'],
+            'PLAYER_ID'         => $atts['player_id'],
+            'PLAYER_KEY'        => $atts['player_key']
+        );
+        $context = array_merge( $context, $timber_options );
 
         return Timber::compile('inc/default-post-template.twig', $context);
     } else {
@@ -142,11 +152,11 @@ function wp_brightcove_shortcode_set_default_options() {
     global $brightcove_embed_defaults;
 
     if( false === get_option( 'wp_brightcove_shortcode' ) ) {
-        $options['video_width'] = $brightcove_embed_defaults['width'];
-        $options['video_height'] = $brightcove_embed_defaults['height'];
-        $options['player_id'] = $brightcove_embed_defaults['player_id'];
-        $options['player_key'] = $brightcove_embed_defaults['player_key'];
-        $options['version'] = '0.1.0';
+        $options['video_width']     = $brightcove_embed_defaults['width'];
+        $options['video_height']    = $brightcove_embed_defaults['height'];
+        $options['player_id']       = $brightcove_embed_defaults['player_id'];
+        $options['player_key']      = $brightcove_embed_defaults['player_key'];
+        $options['version']         = '0.1.0';
         add_option( 'wp_brightcove_shortcode_options', $options );
     }
 }

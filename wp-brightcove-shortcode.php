@@ -229,36 +229,38 @@ SS      HH   HH OO   OO RR   RR   TTT   CC    C OO   OO DD  DD  EE
 
 */
 
-function brightcove_video_shortcode( $atts ) {
-    if( array_key_exists( 'id', $atts ) && $atts['id'] ) {
-        $options = get_option( 'wp_brightcove_shortcode_options' );
+if( !defined( 'brightcove_video_shortcode' ) ) {
+    function brightcove_video_shortcode( $atts ) {
+        if( array_key_exists( 'id', $atts ) && $atts['id'] ) {
+            $options = get_option( 'wp_brightcove_shortcode_options' );
 
-        $atts = shortcode_atts(
-                array(
-                    'id'            => false,
-                    'video_width'   => $options['video_width'],
-                    'video_height'  => $options['video_height'],
-                    'player_id'     => $options['player_id'],
-                    'player_key'    => $options['player_key']
-                ),
-                $atts
+            $atts = shortcode_atts(
+                    array(
+                        'id'            => false,
+                        'video_width'   => $options['video_width'],
+                        'video_height'  => $options['video_height'],
+                        'player_id'     => $options['player_id'],
+                        'player_key'    => $options['player_key']
+                    ),
+                    $atts
+                );
+
+            $context = Timber::get_context();
+            $timber_options = array(
+                'VIDEO_WIDTH'       => $atts['video_width'],
+                'VIDEO_HEIGHT'      => $atts['video_height'],
+                'VIDEO_ID'          => $atts['id'],
+                'PLAYER_ID'         => $atts['player_id'],
+                'PLAYER_KEY'        => $atts['player_key']
             );
+            $context = array_merge( $context, $timber_options );
 
-        $context = Timber::get_context();
-        $timber_options = array(
-            'VIDEO_WIDTH'       => $atts['video_width'],
-            'VIDEO_HEIGHT'      => $atts['video_height'],
-            'VIDEO_ID'          => $atts['id'],
-            'PLAYER_ID'         => $atts['player_id'],
-            'PLAYER_KEY'        => $atts['player_key']
-        );
-        $context = array_merge( $context, $timber_options );
-
-        return Timber::compile('inc/default-post-template.twig', $context);
-    } else {
-        return '';
+            return Timber::compile('inc/default-post-template.twig', $context);
+        } else {
+            return '';
+        }
     }
+    add_shortcode( 'brightcove', 'brightcove_video_shortcode' );
 }
-add_shortcode( 'brightcove', 'brightcove_video_shortcode' );
 
 ?>

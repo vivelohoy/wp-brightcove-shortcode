@@ -229,7 +229,7 @@ SS      HH   HH OO   OO RR   RR   TTT   CC    C OO   OO DD  DD  EE
 
 */
 
-if( !defined( 'brightcove_video_shortcode' ) ) {
+if( !function_exists( 'brightcove_video_shortcode' ) ) {
     function brightcove_video_shortcode( $atts ) {
         if( array_key_exists( 'id', $atts ) && $atts['id'] ) {
             $options = get_option( 'wp_brightcove_shortcode_options' );

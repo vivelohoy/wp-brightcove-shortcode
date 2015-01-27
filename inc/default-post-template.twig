@@ -17,6 +17,7 @@ found at https://accounts.brightcove.com/en/terms-and-conditions/.
   <param name="dynamicStreaming" value="true" />
   <param name="@videoPlayer" value="{{ VIDEO_ID }}" />
   <param name="linkBaseURL" value="http://vivelohoy.com/" />
+  <param name="adServerURL" value="http://pubads.g.doubleclick.net/gampad/ads?iu=/4011/trb.vivelohoy2/video&sz=3x3&cust_params=pos%3Dpre&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&correlator=" />
 </object>
 <!-- 
 This script tag will cause the Brightcove Players defined above it to be created as soon
@@ -25,6 +26,10 @@ the rest of the HTML is processed and the page load is complete, remove the line
 -->
 <script type="text/javascript">
     document.querySelector('param[name=linkBaseURL]').value = document.location.href;
+    correlator = Math.round( Math.random() * 1000000000 );
+    adServerURL_base = document.querySelector("object.BrightcoveExperience param[name=adServerURL]").value;
+    adServerURL = adServerURL_base + correlator;
+    document.querySelector("object.BrightcoveExperience param[name=adServerURL]").value = adServerURL;
     brightcove.createExperiences();
 </script>
 <!-- End of Brightcove Player -->

@@ -63,11 +63,15 @@ function wp_brightcove_shortcode_add_defaults() {
         /*
         Brightcove Players:
 
-        Vivelohoy Video Player - Chromeless, 480x270 (default)
+        Vivelohoy Video Player with Ads - Chromeless, 480x270 (default)
+        player_id = 4005130149001
+        player_key = AQ~~,AAAB2Ejp1kE~,qYgZ7QVyRmCtORwOH7VtCKYNUwwP3qno
+
+        Vivelohoy Video Player - Chromeless, 480x270
         player_id = 2027711527001
         player_key = AQ~~,AAAB2Ejp1kE~,qYgZ7QVyRmCflxEtsSSb7N6jXd3aEUNg
 
-        Emprendedores Video Player - Chromeless, 480x270 (default)
+        Emprendedores Video Player - Chromeless, 480x270
         player_id = 3971228038001
         player_key = AQ~~,AAAB2Ejp1kE~,qYgZ7QVyRmAY6eVE_jKAzK_NU0a57Pd6
 
@@ -76,8 +80,8 @@ function wp_brightcove_shortcode_add_defaults() {
         $arr = array(
             'video_width'   => 853,
             'video_height'  => 480,
-            'player_id'     => 2027711527001,
-            'player_key'    => 'AQ~~,AAAB2Ejp1kE~,qYgZ7QVyRmCflxEtsSSb7N6jXd3aEUNg'
+            'player_id'     => 4005130149001,
+            'player_key'    => 'AQ~~,AAAB2Ejp1kE~,qYgZ7QVyRmCtORwOH7VtCKYNUwwP3qno'
         );
         update_option( 'wp_brightcove_shortcode_options', $arr );
     }

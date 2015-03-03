@@ -80,4 +80,56 @@ if( !function_exists( 'brightcove_video_shortcode' ) ) {
     add_shortcode( 'brightcove', 'brightcove_video_shortcode' );
 }
 
+if( !function_exists( 'brightcove_noads_video_shortcode' ) ) {
+    function brightcove_noads_video_shortcode( $atts ) {
+        global $wbs_brightcove_players;
+        global $wbs_video_defaults;
+
+        $atts = shortcode_atts( $wbs_video_defaults, $atts );
+
+        if( array_key_exists( 'id', $atts ) && $atts['id'] ) {
+            $context = Timber::get_context();
+            $timber_options = array(
+                'VIDEO_WIDTH'       => $atts['width'],
+                'VIDEO_HEIGHT'      => $atts['height'],
+                'VIDEO_ID'          => $atts['id'],
+                'PLAYER_ID'         => $wbs_brightcove_players['vivelohoy-noads']['player_id'],
+                'PLAYER_KEY'        => $wbs_brightcove_players['vivelohoy-noads']['player_key'],
+            );
+            $context = array_merge( $context, $timber_options );
+
+            return Timber::compile('inc/noads-player-template.twig', $context);
+        } else {
+            return '';
+        }
+    }
+    add_shortcode( 'brightcove-noads', 'brightcove_noads_video_shortcode' );
+}
+
+if( !function_exists( 'emprendedores_video_shortcode' ) ) {
+    function emprendedores_video_shortcode( $atts ) {
+        global $wbs_brightcove_players;
+        global $wbs_video_defaults;
+
+        $atts = shortcode_atts( $wbs_video_defaults, $atts );
+
+        if( array_key_exists( 'id', $atts ) && $atts['id'] ) {
+            $context = Timber::get_context();
+            $timber_options = array(
+                'VIDEO_WIDTH'       => $atts['width'],
+                'VIDEO_HEIGHT'      => $atts['height'],
+                'VIDEO_ID'          => $atts['id'],
+                'PLAYER_ID'         => $wbs_brightcove_players['emprendedores']['player_id'],
+                'PLAYER_KEY'        => $wbs_brightcove_players['emprendedores']['player_key'],
+            );
+            $context = array_merge( $context, $timber_options );
+
+            return Timber::compile('inc/noads-player-template.twig', $context);
+        } else {
+            return '';
+        }
+    }
+    add_shortcode( 'emprendedores', 'emprendedores_video_shortcode' );
+}
+
 ?>

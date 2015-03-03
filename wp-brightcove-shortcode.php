@@ -72,7 +72,7 @@ if( !function_exists( 'brightcove_video_shortcode' ) ) {
             );
             $context = array_merge( $context, $timber_options );
 
-            return Timber::compile('inc/default-post-template.twig', $context);
+            return Timber::compile('inc/ads-player-template.twig', $context);
         } else {
             return '';
         }

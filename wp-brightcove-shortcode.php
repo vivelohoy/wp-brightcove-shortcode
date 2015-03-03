@@ -3,7 +3,7 @@
  * Plugin Name: WP Brightcove Shortcode Plugin
  * Plugin URI: https://github.com/vivelohoy/wp-brightcove-shortcode
  * Description: A WordPress plugin to provide a shortcode to embed a Brightcove video.
- * Version: 0.1.0
+ * Version: 1.0.0
  * Author: Nick Bennett
  * Author URI: https://github.com/tothebeat
  * License: MIT

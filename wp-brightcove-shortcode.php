@@ -13,13 +13,6 @@
  * Global variables
  */
 
-if( !defined( 'wp_brightcove_shortcode_DIR' ) ) {
-    define('wp_brightcove_shortcode_DIR', dirname( __FILE__ ) ); // plugin dir
-}
-if( !defined( 'wp_brightcove_shortcode_URL' ) ) {
-    define('wp_brightcove_shortcode_URL', plugin_dir_url( __FILE__ ) ); // plugin url
-}
-
 // source: https://videocloud.brightcove.com/publishing
 $wbs_brightcove_players = array(
     "vivelohoy"         => array(
